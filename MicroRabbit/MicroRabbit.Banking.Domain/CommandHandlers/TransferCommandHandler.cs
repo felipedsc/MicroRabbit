@@ -18,7 +18,6 @@ namespace MicroRabbit.Banking.Domain.CommandHandlers
 
         public Task<bool> Handle(CreateTransferCommand request, CancellationToken cancellationToken)
         {
-            //publish event to rabbitmq
             _bus.Publish(new TransferCreatedEvent(request.From, request.To, request.Amount));
 
             return Task.FromResult(true);
